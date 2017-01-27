@@ -1,13 +1,13 @@
 version: '2'
 services:
   app:
-#    build:
-#      context: ./src
-    image: doomatel/django-polls-webapp
+    # build:
+    #   context: ./src # build image locally and use it
+    image: aleida/django-polls-webapp
     depends_on:
       - database
       - redis
-    entrypoint: /docker-entrypoint-api.sh
+    entrypoint: /docker-entrypoint-api.sh # is run when container is run
     env_file:
       - ./env.public
       - ./env.private
@@ -17,9 +17,9 @@ services:
 #      - ./src:/polls
       - public_files:/polls/public
   celery:
-#    build:
-#      context: ./src
-    image: doomatel/django-polls-webapp
+    # build:
+    #   context: ./src
+    image: aleida/django-polls-webapp
     depends_on:
       - app
       - database
